@@ -29,4 +29,4 @@ cache:
   # Cake packages cache
   - tools -> build.cake
   # NuGet packages cache
-  - %LocalAppData%\NuGet\v3-cache -> **\*.csproj
+  - '%LocalAppData%\NuGet\v3-cache' -> **\*.csproj
