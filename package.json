@@ -1,0 +1,12 @@
+{
+  "name": "Churchie",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@semantic-release/changelog": "^2.1.1",
+    "@semantic-release/exec": "^2.2.4",
+    "@semantic-release/git": "^6.0.1",
+    "semantic-release": "^15.6.3"
+  }
+}
