@@ -1,22 +1,30 @@
+# perform linux build followed by the windows build in sequence
+# 'fast_finish: true' will prevent the windows build from running if the linux build fails
+# the windows build will trigger the release on success
+
 image:
   - Ubuntu
   - Visual Studio 2017
 
 environment:
+  # semantic-version requires node > 8.3
+  nodejs_version: 10.3.0
   GITHUB_TOKEN:
     secure: AfYSDe+bTp+pyzM0XEbELoQCJd/eEleBdXXspO4+/yLvbEV6MnueR+s3zQLEOWU5
   NUGET_TOKEN:
     secure: SEajLjSiDgLP9CnceSfR6zxshTq0O7GU8n1JUz2ncq3Gb2tb4AaOumad4YzYaGxz
 
 install:
-  # semantic-version requires node > 8.3
-  - ps: Install-Product node 10.3.0
+  - cmd: powershell Install-Product node $env:nodejs_version
+  - sh: nvm install $nodejs_version
+  
   # install latest npx to fix "Path must be a string. Received undefined" issue
   # https://github.com/zkat/npx/issues/144
   - npm install -g npx@10.2.0
 
 build_script:
   - ps: .\build.ps1
+  - sh: .\build.sh
 
 # Disable appveyor test discovery
 test: off
