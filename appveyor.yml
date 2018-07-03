@@ -4,15 +4,24 @@ image:
 
 environment:
   GITHUB_TOKEN:
-    secure: M0LldT45NBZ/ZKkwSGmsrdLXAbGnaZ5zQkEhQG+TgRE+v8C4m4w/T3pJTIYi6hqR
+    secure: AfYSDe+bTp+pyzM0XEbELoQCJd/eEleBdXXspO4+/yLvbEV6MnueR+s3zQLEOWU5
   NUGET_TOKEN:
     secure: SEajLjSiDgLP9CnceSfR6zxshTq0O7GU8n1JUz2ncq3Gb2tb4AaOumad4YzYaGxz
 
 stack: node 10.3.0
 
+for:  
+-
+  matrix:
+    only:
+      - image: Ubuntu
+
+  install:
+    # semantic-version requires node > 8.3
+    - ps: Install-Product node 10.3.0
+      
+
 install:
-  # semantic-version requires node > 8.3
-  - ps: Install-Product node 10.3.0
   # install latest npx to fix "Path must be a string. Received undefined" issue
   # https://github.com/zkat/npx/issues/144
   - npm install -g npx@10.2.0
@@ -26,8 +35,12 @@ test: off
 # Disable builds on new tags
 skip_tags: true
 
+# Fail as soon as any job fails
+fast_finish: true
+
 cache:
   # Cake packages cache
   - tools -> build.cake
   # NuGet packages cache
   - '%LocalAppData%\NuGet\v3-cache -> **\*.csproj'
+
