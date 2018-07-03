@@ -5,10 +5,15 @@
 image:
   - Ubuntu
   - Visual Studio 2017
+environment:  
+  APPVEYOR_YML_DISABLE_PS_LINUX: true
+
 
 environment:
   # semantic-version requires node > 8.3
   nodejs_version: 10.3.0
+  # prevent build.ps1 being executed during the linux build
+  APPVEYOR_YML_DISABLE_PS_LINUX: true
   GITHUB_TOKEN:
     secure: AfYSDe+bTp+pyzM0XEbELoQCJd/eEleBdXXspO4+/yLvbEV6MnueR+s3zQLEOWU5
   NUGET_TOKEN:
@@ -22,9 +27,9 @@ install:
   # https://github.com/zkat/npx/issues/144
   - npm install -g npx@10.2.0
 
-build_script:
+build_script:  
   - ps: .\build.ps1
-  - sh: .\build.sh
+  - sh: ./build.sh
 
 # Disable appveyor test discovery
 test: off
