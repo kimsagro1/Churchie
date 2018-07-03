@@ -26,7 +26,7 @@ install:
 
 build_script:  
   - ps: .\build.ps1
-  - sh: ./build.sh
+  - sh: chmod +x ./build.sh && ./build.sh
 
 # Disable appveyor test discovery
 test: off
