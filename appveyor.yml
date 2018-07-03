@@ -9,6 +9,8 @@ environment:
   NUGET_TOKEN:
     secure: SEajLjSiDgLP9CnceSfR6zxshTq0O7GU8n1JUz2ncq3Gb2tb4AaOumad4YzYaGxz
 
+stack: node 10.5.0
+
 install:
   # semantic-version requires node > 8.3
   - ps: Install-Product node $env:NODE_VERSION
