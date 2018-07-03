@@ -163,8 +163,8 @@ Task("Release")
         "Skipped as release version has not changed"
     )
     .WithCriteria<BuildContext>((_, buildContext) =>
-        buildContext.IsRunningOnUnix,
-        "Skipped as release is not triggered by unix build"
+        !buildContext.IsRunningOnUnix,
+        "Skipped as release was triggered by a linux build"
     )
     .Does<BuildContext>(buildContext =>
 {
