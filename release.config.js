@@ -1,6 +1,7 @@
 module.exports = {
   verifyConditions: [
     () => {
+      console.log('process.env', process.env)
       if (!process.env.NUGET_TOKEN) {
         throw new SemanticReleaseError(
           'The environment variable NUGET_TOKEN is required.',
