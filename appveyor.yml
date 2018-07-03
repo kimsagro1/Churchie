@@ -5,9 +5,6 @@
 image:
   - Ubuntu
   - Visual Studio 2017
-environment:  
-  APPVEYOR_YML_DISABLE_PS_LINUX: true
-
 
 environment:
   # semantic-version requires node > 8.3
