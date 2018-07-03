@@ -3,13 +3,13 @@ image:
   - Ubuntu
 
 environment:
-  NODE_VERSION: 10.5.0
+  NODE_VERSION: 10.3.0
   GITHUB_TOKEN:
     secure: M0LldT45NBZ/ZKkwSGmsrdLXAbGnaZ5zQkEhQG+TgRE+v8C4m4w/T3pJTIYi6hqR
   NUGET_TOKEN:
     secure: SEajLjSiDgLP9CnceSfR6zxshTq0O7GU8n1JUz2ncq3Gb2tb4AaOumad4YzYaGxz
 
-stack: node 10.5.0
+stack: node $env:NODE_VERSION
 
 install:
   # semantic-version requires node > 8.3
