@@ -9,9 +9,9 @@ var projectName = "Churchie";
 var buildContext = new BuildContext(projectName, Context);
 
 Action<NpxSettings> requiredSemanticVersionPackages = settings => settings
-    .AddPackage("semantic-release@15.4.2")
-    .AddPackage("@semantic-release/changelog@2.0.2")
-    .AddPackage("@semantic-release/git@5.0.0")
+    .AddPackage("semantic-release@15.6.3")
+    .AddPackage("@semantic-release/changelog@2.1.1")
+    .AddPackage("@semantic-release/git@6.0.1")
     .AddPackage("@semantic-release/exec@2.2.4");
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -40,16 +40,16 @@ Task("Default")
     .IsDependentOn("Build");
 
 Task("Build")
-    .IsDependentOn("dotnet --info")
+    .IsDependentOn("Run_dotnet_info")
     .IsDependentOn("Clean")
-    .IsDependentOn("Get next release number")
-    .IsDependentOn("Build solution")
-    .IsDependentOn("Run tests")
+    .IsDependentOn("Get_next_release_number")
+    .IsDependentOn("Build_solution")
+    .IsDependentOn("Run_tests")
     .IsDependentOn("Package")
     .IsDependentOn("Release")
     ;
 
-Task("dotnet --info")
+Task("Run_dotnet_info")
     .Does(() =>
 {
     Information("dotnet --info");
@@ -74,15 +74,15 @@ number and changlelog.
 To do this run the following locally:
 > $env:NUGET_TOKEN="insert_token_here"
 > $env:GITHUB_TOKEN="insert_token_here"
-> .\build.ps1  -ScriptArgs '-target="Get next release number"'
+> .\build.ps1 -target Get_next_release_number
 
 NOTE: The GITHUB_TOKEN environment variable will need to be set
 so that semantic-release can access the repository
 */
-Task("Get next release number")
+Task("Get_next_release_number")
     .WithCriteria<BuildContext>(
         (_, buildContext) => buildContext.IsRunningOnAppveyorMasterBranch ||
-                             buildContext.Target == "Get next release number",
+                             buildContext.Target == "Get_next_release_number",
         "Skipped as build not triggered by Appveyor 'master' branch commit"
     )
     .Does<BuildContext>(buildContext =>
@@ -102,7 +102,7 @@ Task("Get next release number")
         Warning("There are no relevant changes, skipping publish to nuget");
 });
 
-Task("Build solution")
+Task("Build_solution")
     .Does<BuildContext>(buildContext =>
 {
     foreach(var solution in buildContext.Solutions)
@@ -119,7 +119,7 @@ Task("Build solution")
     }
 });
 
-Task("Run tests")
+Task("Run_tests")
     .Does<BuildContext>(buildContext =>
 {
     foreach(var testProject in buildContext.TestProjects)
