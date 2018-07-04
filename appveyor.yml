@@ -30,7 +30,8 @@ skip_tags: true
 cache:
   # Cake packages cache
   - tools -> build.cake
-  # NuGet packages cache
+  - tools -> build.ps1
+  # NuGet packages cache (Windows and Linux)
   - '%LocalAppData%\NuGet\v3-cache -> **\*.csproj'
   - '~/.local/share/NuGet/v3-cache -> **\*.csproj'
 
