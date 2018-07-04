@@ -54,7 +54,6 @@ Task("dotnet --info")
 {
     Information("dotnet --info");
     StartProcess("dotnet", new ProcessSettings { Arguments = "--info" });
-    StartProcess("dotnet", new ProcessSettings { Arguments = "nuget locals all --list" });
 });
 
 Task("Clean")
