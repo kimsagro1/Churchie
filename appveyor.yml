@@ -32,6 +32,7 @@ cache:
   - tools -> build.cake
   # NuGet packages cache
   - '%LocalAppData%\NuGet\v3-cache -> **\*.csproj'
+  - ~/.local/share/NuGet/v3-cache
 
 matrix:
   # Fail as soon as any job fails
