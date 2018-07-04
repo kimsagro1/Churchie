@@ -9,7 +9,7 @@ Param
 )
 
 $CAKE_DIR = "$ToolsDir/Cake.CoreCLR.$CakeVersion"
-$CAKE_DLL = "$CAKE_DIR/cake.coreclr/$CakeVersion\Cake.dll"
+$CAKE_DLL = "$CAKE_DIR/cake.coreclr/$CakeVersion/Cake.dll"
 
 if (-not (Test-Path $ToolsProj))
 {
