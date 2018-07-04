@@ -15,7 +15,7 @@ if (-not (Test-Path $ToolsProj))
 {
     $projectFileContents = '<Project Sdk="Microsoft.NET.Sdk"><PropertyGroup><OutputType>Exe</OutputType><TargetFramework>netcoreapp2.0</TargetFramework></PropertyGroup></Project>'
 
-    New-Item -Path $ToolsDir -type directory | Out-Null
+    New-Item -Force -Path $ToolsDir -type directory | Out-Null
     Out-File -Force -InputObject $projectFileContents -FilePath $ToolsProj
 
     dotnet add "$ToolsProj" package cake.coreclr -v "$CakeVersion" --package-directory "$CAKE_DIR"
