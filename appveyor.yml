@@ -17,10 +17,6 @@ environment:
 install:
   - cmd: powershell Install-Product node $env:nodejs_version
   - sh: nvm install $nodejs_version
-  
-  # install latest npx to fix "Path must be a string. Received undefined" issue
-  # https://github.com/zkat/npx/issues/144
-  - npm install -g npx@10.2.0
 
 build_script:  
   - ps: .\build.ps1
