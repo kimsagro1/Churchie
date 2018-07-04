@@ -9,8 +9,6 @@ image:
 environment:
   # semantic-version requires node > 8.3
   nodejs_version: 10.3.0
-  # prevent build.ps1 being executed during the linux build
-  APPVEYOR_YML_DISABLE_PS_LINUX: true
   GITHUB_TOKEN:
     secure: AfYSDe+bTp+pyzM0XEbELoQCJd/eEleBdXXspO4+/yLvbEV6MnueR+s3zQLEOWU5
   NUGET_TOKEN:
@@ -26,7 +24,6 @@ install:
 
 build_script:  
   - ps: .\build.ps1
-  - sh: chmod +x ./build.sh && ./build.sh
 
 # Disable appveyor test discovery
 test: off
