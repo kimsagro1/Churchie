@@ -1,9 +1,9 @@
 Param
 (
     [String]$CakeVersion = "0.28.1",
-    [String]$ToolsDir    = "$PSScriptRoot",
+    [String]$ToolsDir    = "$PSScriptRoot\tools",
+    [String]$BuildFile   = "$PSScriptRoot\build.cake",
     [String]$ToolsProj   = "$ToolsDir\tools.csproj",
-    [String]$BuildFile   = "$ToolsDir\build.cake",
     [String]$Target      = 'Default',
     [String]$Verbosity   = 'Verbose'
 )
