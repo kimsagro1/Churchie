@@ -3,8 +3,8 @@
 # the windows build will trigger the release on success
 
 image:
-  - Ubuntu
   - Visual Studio 2017
+  - Ubuntu
 
 environment:
   # semantic-version requires node > 8.3
