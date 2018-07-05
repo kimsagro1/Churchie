@@ -10,7 +10,7 @@ environment:
   # semantic-version requires node > 8.3
   nodejs_version: 10.3.0
   GITHUB_TOKEN:
-    secure: ujH3AA1wAzZqH288EDFxMdNhIM+oojkrEfT/avjGwc0naTizb5j3DFeHhRziAufy
+    secure: SQdnpzLPkSlU8gZDG+O/IYA5yIgZtWX4gvkMrwy7TXOZSlxRsn7v1Wltcn3MIoad
   NUGET_TOKEN:
     secure: SEajLjSiDgLP9CnceSfR6zxshTq0O7GU8n1JUz2ncq3Gb2tb4AaOumad4YzYaGxz
 
