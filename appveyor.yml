@@ -10,15 +10,17 @@ environment:
   # semantic-version requires node > 8.3
   nodejs_version: 10.3.0
   GITHUB_TOKEN:
-    secure: AfYSDe+bTp+pyzM0XEbELoQCJd/eEleBdXXspO4+/yLvbEV6MnueR+s3zQLEOWU5
+    secure: ujH3AA1wAzZqH288EDFxMdNhIM+oojkrEfT/avjGwc0naTizb5j3DFeHhRziAufy
   NUGET_TOKEN:
     secure: SEajLjSiDgLP9CnceSfR6zxshTq0O7GU8n1JUz2ncq3Gb2tb4AaOumad4YzYaGxz
 
 install:
   - cmd: powershell Install-Product node $env:nodejs_version
   - sh: nvm install $nodejs_version
+  # hack until https://github.com/semantic-release/semantic-release/issues/816 is resolved
+  - npm install pvdlg/parse-domain#overwrite-tries --save
 
-build_script:  
+build_script:
   - ps: .\build.ps1
 
 # Disable appveyor test discovery
@@ -31,9 +33,8 @@ cache:
   # Cake packages cache
   - tools -> build.cake
   - tools -> build.ps1
-  # NuGet packages cache (Windows and Linux)
+  # NuGet packages cache
   - '%LocalAppData%\NuGet\v3-cache -> **\*.csproj'
-  - '~/.local/share/NuGet/v3-cache -> **\*.csproj'
 
 matrix:
   # Fail as soon as any job fails
