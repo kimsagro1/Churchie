@@ -1,6 +1,6 @@
 Param
 (
-    [String]$CakeVersion = "0.28.1",
+    [String]$CakeVersion = "0.29.0",
     [String]$ToolsDir    = [io.path]::combine($PSScriptRoot, "tools"),
     [String]$BuildFile   = [io.path]::combine($PSScriptRoot, "build.cake"),
     [String]$ToolsProj   = [io.path]::combine($ToolsDir, "tools.csproj"),
