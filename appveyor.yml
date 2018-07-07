@@ -72,7 +72,7 @@ cache:
   - tools -> build.ps1
   # NuGet packages cache (windows and linux)
   - '%LocalAppData%\NuGet\v3-cache -> **\*.csproj'
-  - '$HOME/.local/share/NuGet/v3-cache -> ***.csproj'
+  - '$HOME/.local/share/NuGet/v3-cache -> **\*.csproj'
 
 matrix:
   # Fail as soon as any job fails
