@@ -35,6 +35,48 @@ cache:
   - tools -> build.ps1
   # NuGet packages cache
   - '%LocalAppData%\NuGet\v3-cache -> **\*.csproj'
+# perform linux build followed by the windows build in sequence
+# 'fast_finish: true' will prevent the windows build from running if the linux build fails
+# the windows build will trigger the release on success
+
+image:
+  - Visual Studio 2017
+  - Ubuntu
+
+environment:
+  # semantic-version requires node > 8.3
+  nodejs_version: 10.3.0
+  GITHUB_TOKEN:
+    secure: SQdnpzLPkSlU8gZDG+O/IYA5yIgZtWX4gvkMrwy7TXOZSlxRsn7v1Wltcn3MIoad
+  NUGET_TOKEN:
+    secure: SEajLjSiDgLP9CnceSfR6zxshTq0O7GU8n1JUz2ncq3Gb2tb4AaOumad4YzYaGxz
+
+install:
+  - cmd: powershell Install-Product node $env:nodejs_version
+  - sh: nvm install $nodejs_version
+  # hack until https://github.com/semantic-release/semantic-release/issues/816 is resolved
+  - npm install pvdlg/parse-domain#overwrite-tries --save
+
+build_script:
+  - ps: .\build.ps1
+
+# Disable appveyor test discovery
+test: off
+
+# Disable builds on new tags
+skip_tags: true
+
+cache:
+  # Cake packages cache
+  - tools -> build.cake
+  - tools -> build.ps1
+  # NuGet packages cache (windows and linux)
+  - '%LocalAppData%\NuGet\v3-cache -> **\*.csproj'
+  - '$HOME/.local/share/NuGet/v3-cache -> ***.csproj'
+
+matrix:
+  # Fail as soon as any job fails
+  fast_finish: true
 
 matrix:
   # Fail as soon as any job fails
