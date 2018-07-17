@@ -1,5 +1,5 @@
 #addin "nuget:https://api.nuget.org/v3/index.json?package=Cake.Figlet&version=1.1.0"
-#addin "nuget:https://api.nuget.org/v3/index.json?package=Cake.Npx&version=1.2.0"
+#addin "nuget:https://api.nuget.org/v3/index.json?package=Cake.Npx&version=1.3.0"
 
 ///////////////////////////////////////////////////////////////////////////////
 // GLOBAL VARIABLES
@@ -9,10 +9,10 @@ var projectName = "Churchie";
 var buildContext = new BuildContext(projectName, Context);
 
 Action<NpxSettings> requiredSemanticVersionPackages = settings => settings
-    .AddPackage("semantic-release@15.7.2")
-    .AddPackage("@semantic-release/changelog@2.1.1")
-    .AddPackage("@semantic-release/git@6.0.1")
-    .AddPackage("@semantic-release/exec@2.2.4");
+    .AddPackage("semantic-release@15.8.0")
+    .AddPackage("@semantic-release/changelog@3.0.0)
+    .AddPackage("@semantic-release/git@7.0.0")
+    .AddPackage("@semantic-release/exec@2.3.0");
 
 ///////////////////////////////////////////////////////////////////////////////
 // SETUP / TEARDOWN
