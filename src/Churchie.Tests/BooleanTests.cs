@@ -8,7 +8,7 @@ namespace Churchie.Tests
         public void Example1()
         {
             var actual = new ChurchAnd(new ChurchTrue(), new ChurchFalse());
-            Assert.False(actual.ToBool());
+            Assert.True(actual.ToBool());
         }
 
         [Fact]
